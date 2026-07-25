@@ -1,0 +1,187 @@
+:root {
+  --ink: #1b2430;
+  --ink-soft: #52606d;
+  --faint: #8b97a5;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-line: rgba(255, 255, 255, 0.9);
+  --shadow: 0 18px 50px -20px rgba(20, 40, 70, 0.4);
+  --display: "Fraunces", Georgia, serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* The sky. JS overrides these two based on time of day + conditions. */
+  --sky-top: #afcbe8;
+  --sky-bottom: #e9eef2;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: linear-gradient(170deg, var(--sky-top), var(--sky-bottom));
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.8s ease;
+}
+a { color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+
+.app {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- header ---- */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.unit-toggle {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  backdrop-filter: blur(8px);
+}
+.unit-toggle:hover { background: #fff; }
+
+/* ---- search ---- */
+.search { display: flex; gap: 8px; margin-bottom: 12px; }
+.search-input {
+  flex: 1;
+  border: 1px solid var(--card-line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--ink);
+  backdrop-filter: blur(8px);
+}
+.search-input::placeholder { color: var(--faint); }
+.search-input:focus { outline: 2px solid #6ea8dc; outline-offset: 1px; }
+.search-btn {
+  border: 0;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.search-btn:hover { background: #2b3a4d; }
+
+/* ---- recent chips ---- */
+.recents { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.chip {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  backdrop-filter: blur(8px);
+}
+.chip:hover { background: #fff; color: var(--ink); }
+
+/* ---- status ---- */
+.status {
+  min-height: 20px;
+  margin: 4px 2px 12px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.status.error { color: #b23b2e; }
+
+/* ---- result ---- */
+.result { animation: rise 0.5s ease; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.now {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  margin-bottom: 14px;
+}
+.now-place {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 0 2px;
+}
+.now-sub { color: var(--faint); font-size: 13px; margin: 0 0 16px; }
+.now-main { display: flex; align-items: center; gap: 16px; }
+.now-icon { font-size: 56px; line-height: 1; }
+.now-temp {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+.now-desc { font-size: 15px; font-weight: 500; margin-top: 4px; }
+.now-feels { color: var(--ink-soft); font-size: 13px; }
+
+.now-stats {
+  display: flex;
+  gap: 22px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  margin-bottom: 3px;
+}
+.stat-value { font-size: 16px; font-weight: 600; }
+
+/* ---- forecast row ---- */
+.days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.day {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.day-name { font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+.day-icon { font-size: 24px; margin: 6px 0; }
+.day-max { font-size: 14px; font-weight: 600; }
+.day-min { font-size: 13px; color: var(--faint); }
+.day-precip { font-size: 11px; color: #3d7ab5; margin-top: 4px; min-height: 14px; }
+
+/* ---- footer ---- */
+.foot {
+  margin-top: auto;
+  padding-top: 28px;
+  font-size: 12px;
+  color: var(--faint);
+  text-align: center;
+}
+.foot a { text-decoration: underline; }

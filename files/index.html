@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skylark — Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="head">
+      <h1 class="wordmark">Skylark</h1>
+      <button id="unit-toggle" class="unit-toggle" type="button">°C</button>
+    </header>
+
+    <!-- Search -->
+    <form id="search-form" class="search">
+      <input
+        id="city-input"
+        class="search-input"
+        type="text"
+        placeholder="Search a city…"
+        autocomplete="off"
+        aria-label="City name"
+      />
+      <button class="search-btn" type="submit" aria-label="Search">Go</button>
+    </form>
+
+    <!-- Recent searches get injected here -->
+    <div id="recents" class="recents"></div>
+
+    <!-- Status line: loading / errors -->
+    <p id="status" class="status" role="status"></p>
+
+    <!-- Weather result gets injected here -->
+    <section id="result" class="result" hidden></section>
+
+    <footer class="foot">
+      Data by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.
+      No tracking, no key, no cost.
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

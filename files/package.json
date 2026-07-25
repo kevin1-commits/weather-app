@@ -1,0 +1,9 @@
+{
+  "name": "skylark-weather",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny weather app using the keyless Open-Meteo API.",
+  "engines": {
+    "node": ">=18.x"
+  }
+}
